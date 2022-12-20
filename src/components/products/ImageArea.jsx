@@ -16,6 +16,7 @@ const ImageArea = ({images, setImages}) => {
       return storage.ref("images").child(id).delete()
     }
   }, [images])
+  console.log(images.length)
 
   const uploadImage = useCallback((e) => {
     const file = e.target.files;
@@ -42,7 +43,7 @@ const ImageArea = ({images, setImages}) => {
     <div>
       <div>
         {images.length > 0 && (
-          images.map(image => <ImagePreview delete={deleteImage} id={image.id} key={image.id} path={image.path} />)
+          images.map(image => <ImagePreview id={image.id} key={image.id} path={image.path} delete={deleteImage} />)
         )}
       </div>
       <span>商品画像を登録する</span>

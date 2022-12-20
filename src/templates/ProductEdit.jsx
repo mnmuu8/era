@@ -1,15 +1,21 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import ImageArea from '../components/products/ImageArea';
 import { PrimaryButton, TextInput } from '../components/UIkit'
+import { db } from '../firebase';
 import { saveProduct } from '../reducks/products/operations';
 
 const ProductEdit = () => {
-
   const dispatch = useDispatch();
+  let id = window.location.pathname.split("product/edit")[1];
+  if( id !== "" ) {
+    id = id.split("/")[1];
+  } 
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
   const [images, setImages] = useState([]);
 
   const inputName = useCallback((e) => {
@@ -21,6 +27,24 @@ const ProductEdit = () => {
   const inputPrice = useCallback((e) => {
     setPrice(e.target.value);
   }, [setPrice])
+  const inputQuantity = useCallback((e) => {
+    setQuantity(e.target.value);
+  }, [setQuantity])
+
+  useEffect(() => {
+    if (id !== "") {
+      db.collection("products").doc(id).get()
+      .then(snapshot => {
+        const data = snapshot.data();
+        setImages(data.images)
+        setName(data.name)
+        setDescription(data.description)
+        setPrice(data.price)
+        setQuantity(data.quantity)
+      })
+    }
+    console.log(id)
+  }, [id])
 
   return (
     <div>
@@ -38,7 +62,11 @@ const ProductEdit = () => {
         fullWidth={true} label={"価格"} multiline={false} required={true}
         minRows={1} value={price} type={"number"} onChange={inputPrice}
       />
-      <PrimaryButton label={"商品情報を登録"} onClick={() => dispatch(saveProduct(name, description, price))} />
+      <TextInput 
+        fullWidth={true} label={"個数"} multiline={false} required={true}
+        minRows={1} value={quantity} type={"number"} onChange={inputQuantity}
+      />
+      <PrimaryButton label={"商品情報を登録"} onClick={() => dispatch(saveProduct(id, name, description, price, images, quantity))} />
     </div>
   )
 }
