@@ -27,27 +27,31 @@ const SignUp = () => {
   }, [setConfirmPassword]) 
   
   return (
-    <div>
-      <h2>アカウント登録</h2>
-      <TextInput 
-        fullWidth={true} label={"ユーザー名"} multiline={false} required={true}
-        rows={1} value={username} type={"text"} onChange={inputUsername}
-      />
-      <TextInput 
-        fullWidth={true} label={"メールアドレス"} multiline={false} required={true}
-        rows={1} value={email} type={"email"} onChange={inputEmail}
-      />
-      <TextInput 
-        fullWidth={true} label={"パスワード"} multiline={false} required={true}
-        rows={1} value={password} type={"password"} onChange={inputPassword}
-      />
-      <TextInput 
-        fullWidth={true} label={"パスワード（確認用）"} multiline={false} required={true}
-        rows={1} value={confirmPasswrod} type={"password"} onChange={inputConfirmPassword}
-      />
-      <PrimaryButton label={"アカウントを登録する"} onClick={() => dispatch(signUp(username, email, password, confirmPasswrod))} />
-      <p onClick={() => dispatch(push("/signin"))}>アカウントをお持ちの方はこちら</p>
-    </div>
+    <section className='t-auth'>
+      <div className='inner'>
+        <h2 className='s__head'>アカウント登録</h2>
+        <TextInput 
+          fullWidth={true} label={"ユーザー名"} multiline={false} required={true}
+          rows={1} value={username} type={"text"} onChange={inputUsername}
+        />
+        <TextInput 
+          fullWidth={true} label={"メールアドレス"} multiline={false} required={true}
+          rows={1} value={email} type={"email"} onChange={inputEmail}
+        />
+        <TextInput 
+          fullWidth={true} label={"パスワード"} multiline={false} required={true}
+          rows={1} value={password} type={"password"} onChange={inputPassword}
+        />
+        <TextInput 
+          fullWidth={true} label={"パスワード（確認用）"} multiline={false} required={true}
+          rows={1} value={confirmPasswrod} type={"password"} onChange={inputConfirmPassword}
+        />
+        <PrimaryButton label={"アカウントを登録する"} onClick={() => dispatch(signUp(username, email, password, confirmPasswrod))} />
+        <div className='auth__link'>
+          <p onClick={() => dispatch(push("/signin"))}>アカウントをお持ちの方はこちら</p>
+        </div>
+      </div>
+    </section>
   )
 }
 

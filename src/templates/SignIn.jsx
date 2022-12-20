@@ -19,20 +19,24 @@ const SignIn = () => {
   }, [setPassword]) 
   
   return (
-    <div>
-      <h2>サインイン</h2>
-      <TextInput 
-        fullWidth={true} label={"メールアドレス"} multiline={false} required={true}
-        rows={1} value={email} type={"email"} onChange={inputEmail}
-      />
-      <TextInput 
-        fullWidth={true} label={"パスワード"} multiline={false} required={true}
-        rows={1} value={password} type={"password"} onChange={inputPassword}
-      />
-      <PrimaryButton label={"サインイン"} onClick={() => dispatch(signIn(email, password))} />
-      <p onClick={() => dispatch(push("/signup"))}>アカウントをお持ちでない方はこちら</p>
-      <p onClick={() => dispatch(push("/signin/reset"))}>パスワードを忘れた方はこちら</p>
-    </div>
+    <section className='t-auth'>
+      <div className='inner'>
+        <h2 className='s__head'>サインイン</h2>
+        <TextInput 
+          fullWidth={true} label={"メールアドレス"} multiline={false} required={true}
+          rows={1} value={email} type={"email"} onChange={inputEmail}
+        />
+        <TextInput 
+          fullWidth={true} label={"パスワード"} multiline={false} required={true}
+          rows={1} value={password} type={"password"} onChange={inputPassword}
+        />
+        <PrimaryButton label={"サインイン"} onClick={() => dispatch(signIn(email, password))} />
+        <div className='auth__link'>
+          <p onClick={() => dispatch(push("/signup"))}>アカウントをお持ちでない方はこちら</p>
+          <p onClick={() => dispatch(push("/signin/reset"))}>パスワードを忘れた方はこちら</p>
+        </div>
+      </div>
+    </section>
   )
 }
 

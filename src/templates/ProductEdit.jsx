@@ -49,7 +49,7 @@ const ProductEdit = () => {
   return (
     <section className='section t-product-edit'>
       <div className='section__inner'>
-        <h2 className='section__head'>商品の登録・編集</h2>
+        <h2 className='s__head'>商品の登録・編集</h2>
         <div className='section__body'>
           <ImageArea images={images} setImages={setImages} />
           <TextInput 

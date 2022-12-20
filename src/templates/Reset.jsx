@@ -15,15 +15,19 @@ const Reset = () => {
   }, [setEmail]) 
   
   return (
-    <div>
-      <h2>パスワードのリセット</h2>
-      <TextInput 
-        fullWidth={true} label={"メールアドレス"} multiline={false} required={true}
-        rows={1} value={email} type={"email"} onChange={inputEmail}
-      />
-      <PrimaryButton label={"パスワードをリセットする"} onClick={() => dispatch(resetPassword(email))} />
-      <p onClick={() => dispatch(push("/signin"))}>サインイン画面に戻る</p>
-    </div>
+    <section className='t-auth'>
+      <div className='inner'>
+        <h2 className='s__head'>パスワードのリセット</h2>
+        <TextInput 
+          fullWidth={true} label={"メールアドレス"} multiline={false} required={true}
+          rows={1} value={email} type={"email"} onChange={inputEmail}
+        />
+        <PrimaryButton label={"パスワードをリセットする"} onClick={() => dispatch(resetPassword(email))} />
+        <div className='auth__link'>
+          <p onClick={() => dispatch(push("/signin"))}>サインイン画面に戻る</p>
+        </div>
+      </div>
+    </section>
   )
 }
 

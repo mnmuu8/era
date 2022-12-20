@@ -58,3 +58,22 @@
     margin: 0 auto;
   }
 }
+
+.t-auth {
+  .inner {
+    max-width: 520px;
+    width: 90%;
+    margin: 0 auto;
+    .auth__link {
+      text-align: center;
+      margin-top: 30px;
+      p {
+        margin-bottom: 10px;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
