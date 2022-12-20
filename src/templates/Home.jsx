@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { signOut } from '../reducks/users/operations';
 import { getUserId, getUsername } from '../reducks/users/selectors';
+import ProductList from './ProductList';
 
 const Home = () => {
   const dispatch = useDispatch();
