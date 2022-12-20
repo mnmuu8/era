@@ -47,27 +47,31 @@ const ProductEdit = () => {
   }, [id])
 
   return (
-    <div>
-      <h2>商品の登録・編集</h2>
-      <ImageArea images={images} setImages={setImages} />
-      <TextInput 
-        fullWidth={true} label={"商品名"} multiline={false} required={true}
-        minRows={1} value={name} type={"text"} onChange={inputName}
-      />
-      <TextInput 
-        fullWidth={true} label={"商品説明"} multiline={true} required={true}
-        minRows={5} value={description} type={"text"} onChange={inputDescription}
-      />
-      <TextInput 
-        fullWidth={true} label={"価格"} multiline={false} required={true}
-        minRows={1} value={price} type={"number"} onChange={inputPrice}
-      />
-      <TextInput 
-        fullWidth={true} label={"個数"} multiline={false} required={true}
-        minRows={1} value={quantity} type={"number"} onChange={inputQuantity}
-      />
-      <PrimaryButton label={"商品情報を登録"} onClick={() => dispatch(saveProduct(id, name, description, price, images, quantity))} />
-    </div>
+    <section className='section t-product-edit'>
+      <div className='section__inner'>
+        <h2 className='section__head'>商品の登録・編集</h2>
+        <div className='section__body'>
+          <ImageArea images={images} setImages={setImages} />
+          <TextInput 
+            fullWidth={true} label={"商品名"} multiline={false} required={true}
+            minRows={1} value={name} type={"text"} onChange={inputName}
+          />
+          <TextInput 
+            fullWidth={true} label={"商品説明"} multiline={true} required={true}
+            minRows={5} value={description} type={"text"} onChange={inputDescription}
+          />
+          <TextInput 
+            fullWidth={true} label={"価格"} multiline={false} required={true}
+            minRows={1} value={price} type={"number"} onChange={inputPrice}
+          />
+          <TextInput 
+            fullWidth={true} label={"個数"} multiline={false} required={true}
+            minRows={1} value={quantity} type={"number"} onChange={inputQuantity}
+          />
+          <PrimaryButton label={"商品情報を登録"} onClick={() => dispatch(saveProduct(id, name, description, price, images, quantity))} />
+        </div>
+      </div>
+    </section>
   )
 }
 

@@ -1,0 +1,49 @@
+.c-header {
+  box-shadow: 0 4px 4px #BBB;
+  background-color: #FFF;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1280px;
+    width: 90%;
+    margin: 0 auto;
+    height: 90px;
+    z-index: 50;
+  }
+}
+
+.c-image-area {
+  .preview__all {
+    display: flex; 
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .preview__label {
+    text-align: right;
+    .circle-icon {
+      width: 46px;
+      height: 46px;
+    }
+  }
+}
+
+.c-image-preview {
+  width: 48%;
+  margin-bottom: 12px;
+  border: 1px solid #EEE;
+  img {
+    width: 100%;
+  }
+}
+
+.c-primary-button {
+  width: 100%;
+  height: 48px;
+  background-color: rgb(158, 214, 216) !important;
+  margin-top: 32px !important;
+}

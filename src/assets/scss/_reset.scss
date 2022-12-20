@@ -1,0 +1,25 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family:  '游ゴシック', YuGothic, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3','ヒラギノ角ゴ Pro W3', 'メイリオ', Meiryo, sans-serif;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: "000";
+  text-decoration: none;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, li ,p, span ,div, a, img {
+  margin: 0;
+  padding: 0;
+}

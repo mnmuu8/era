@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button'
 
 const PrimaryButton = (props) => {
   return (
-    <Button onClick={() => props.onClick()}>
+    <Button onClick={() => props.onClick()} className="c-primary-button">
       {props.label}
     </Button>
   )
