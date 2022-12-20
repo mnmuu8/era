@@ -1,5 +1,6 @@
 import { push } from "connected-react-router";
 import { auth, db, FirebaseTimestamp } from "../../firebase"
+import { signInAction } from './actions' 
 
 export const signUp = (username, email, password, confirmPassword) => {
   return async (dispatch) => {
@@ -37,4 +38,37 @@ export const signUp = (username, email, password, confirmPassword) => {
         }
       })
     }
+} 
+
+export const signIn = (email, password) => {
+  return async (dispatch) => {
+
+    if (email === "" | password === "") {
+      alert("必須項目が未入力です")
+      return false
+    }
+
+    auth.signInWithEmailAndPassword(email, password)
+      .then(result => {
+        const user = result.user;
+
+        if (user) {
+          const uid = user.uid;
+
+          db.collection("users").doc(uid).get()
+            .then(snapshot => {
+              const data = snapshot.data();
+
+              dispatch(signInAction({
+                isSignedIn: true,
+                role: data.role,
+                uid: uid,
+                username: data.username
+              }))
+
+              dispatch(push("/"))
+            })
+        }
+      })
+  }
 } 
