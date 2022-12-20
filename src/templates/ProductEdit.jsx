@@ -1,8 +1,11 @@
 import React, { useState, useCallback } from 'react'
+import { useDispatch } from 'react-redux';
 import { PrimaryButton, TextInput } from '../components/UIkit'
+import { saveProduct } from '../reducks/products/operations';
 
 const ProductEdit = () => {
 
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -32,7 +35,7 @@ const ProductEdit = () => {
         fullWidth={true} label={"価格"} multiline={false} required={true}
         minRows={1} value={price} type={"number"} onChange={inputPrice}
       />
-      <PrimaryButton label={"商品情報を登録"} onClick={() => console.log()} />
+      <PrimaryButton label={"商品情報を登録"} onClick={() => dispatch(saveProduct(name, description, price))} />
     </div>
   )
 }
