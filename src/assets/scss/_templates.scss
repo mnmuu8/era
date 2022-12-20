@@ -47,3 +47,14 @@
     }
   }
 }
+
+.t-product-list {
+  .product__all {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1020px;
+    width: 90%;
+    margin: 0 auto;
+  }
+}

@@ -17,8 +17,8 @@ const ProductList = () => {
   console.log(products)
 
   return (
-    <div>
-      <div>
+    <section className='t-product-list'>
+      <div className='product__all'>
         {products.length > 0 && (
           products.map(product => (
             <ProductCard 
@@ -31,7 +31,7 @@ const ProductList = () => {
           ))
         )}
       </div>
-    </div>
+    </section>
   )
 }
 
