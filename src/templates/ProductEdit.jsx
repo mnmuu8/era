@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import ImageArea from '../components/products/ImageArea';
+import ImageArea from '../components/Products/ImageArea';
 import { PrimaryButton, TextInput } from '../components/UIkit'
 import { db } from '../firebase';
 import { saveProduct } from '../reducks/products/operations';

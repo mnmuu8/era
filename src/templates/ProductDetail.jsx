@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { db } from '../firebase';
 import HTMLReactParser from "html-react-parser"
-import { ImageSwiper } from '../components/products';
+import { ImageSwiper } from '../components/Products';
 
 const returnCodeToBr = (text) => {
   if (text === "") {
