@@ -71,3 +71,20 @@
   align-items: center ;
   margin-left: 20px;
 }
+
+.c-cart-list-item {
+  display: flex;
+  .avater {
+    img {
+      width: 140px;
+      height: 140px;
+    }
+  }
+  .detail {
+    width: calc(100% - 240px);
+    padding: 0 40px;
+  }
+  .delete-btn {
+    width: 60px;
+  }
+}

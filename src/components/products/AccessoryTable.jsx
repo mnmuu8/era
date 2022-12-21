@@ -25,7 +25,7 @@ const AccessoryTable = (props) => {
                 <TableCell>
                   {accessory.quantity > 0 ? (
                     <IconButton style={{ padding: 0 }}
-                      // onClick={() => props.addProduct(accessory.size)}
+                      onClick={() => props.addProduct(accessory.color)}
                     >
                       <ShoppingCartIcon />
                     </IconButton>
