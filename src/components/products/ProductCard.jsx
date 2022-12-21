@@ -29,14 +29,13 @@ const ProductCard = (props) => {
   }
 
   return (
-    <Card style={{ width: 300, height: "auto" }}>
+    <Card className='c-product-card'>
       <CardMedia
+        className="card__media"
         image={images[0].path} 
-        title=""
         onClick={() => dispatch(push("product/" + props.id))}
-        style={{ height: 0, paddingTop: "100%" }}
       />
-      <CardContent>
+      <CardContent className='card__contents'>
         <div onClick={() => dispatch(push("products/" + props.id))}>
           <Typography color="textSecondary" componentcc="p">
             {props.name}
@@ -59,13 +58,17 @@ const ProductCard = (props) => {
               dispatch(push("/product/edit/" + props.id ))
               handleClose()
             }}
-          >編集する</MenuItem>
+          >
+            編集する
+          </MenuItem>
           <MenuItem 
             onClick={() => {
               dispatch(deleteProduct(props.id))
               handleClose()
             }}
-          >削除する</MenuItem>
+          >
+            削除する
+          </MenuItem>
         </Menu>
       </CardContent>
     </Card>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ProductCard } from '../components/products';
+import { ProductCard } from '../components/Products';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from '../reducks/products/operations';
 import { getProducts } from '../reducks/products/selectors';
@@ -17,8 +17,8 @@ const ProductList = () => {
   console.log(products)
 
   return (
-    <div>
-      <div>
+    <section className='t-product-list'>
+      <div className='product__all'>
         {products.length > 0 && (
           products.map(product => (
             <ProductCard 
@@ -31,7 +31,7 @@ const ProductList = () => {
           ))
         )}
       </div>
-    </div>
+    </section>
   )
 }
 

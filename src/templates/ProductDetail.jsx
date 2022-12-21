@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { db } from '../firebase';
 import HTMLReactParser from "html-react-parser"
-import { ImageSwiper } from '../components/products';
+import { ImageSwiper } from '../components/Products';
+import { IconButton } from '@material-ui/core';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 const returnCodeToBr = (text) => {
   if (text === "") {
@@ -28,17 +31,31 @@ const ProductDetail = () => {
   }, [])
 
   return (
-    <div>
+    <section className='t-product-detail'>
       {product && (
-        <div>
-          <ImageSwiper images={product.images} />
-          <h2>{product.name}</h2>
-          <p>{product.price}</p>
-          <p>{product.quantity}</p>
-          <p>{returnCodeToBr(product.description)}</p>
+        <div className='inner'>
+          <div className='p__slide'>
+            <ImageSwiper images={product.images} />
+          </div>
+          <div className='p__detail'>
+            <h2 className='p__name'>{product.name}</h2>
+            <p className='p__description'>{returnCodeToBr(product.description)}</p>
+            <div className='p__quantity'>
+              <p>{"残り" + product.quantity + "つ"}</p>
+              <div className='icons'>
+                <IconButton>
+                  <ShoppingCartIcon />
+                </IconButton>
+                <IconButton>
+                  <FavoriteBorderIcon />
+                </IconButton>
+              </div>
+            </div>
+            <p className='p__price'>{"¥" + product.price}</p>
+          </div>
         </div>
       )}
-    </div>
+    </section>
   )
 }
 
