@@ -5,15 +5,15 @@
 }
 .t-product-detail {
   .inner {
-    width: 820px;
+    width: 1020px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     .p__slide {
-      width: 400px;
-      height: 400px;
+      width: 320px;
+      height: 320px;
       .swiper-slide {
-        height: 400px;
+        height: 320px;
       }
       img {
         width: 100%;
@@ -22,7 +22,7 @@
       }
     }
     .p__detail {
-      width: calc((100% - 60px) - 400px);
+      width: calc((100% - 100px) - 320px);
       .p__name {
         font-size: 32px;
         margin-bottom: 10px;
