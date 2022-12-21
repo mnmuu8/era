@@ -1,6 +1,25 @@
 import { push } from "connected-react-router";
 import { auth, db, FirebaseTimestamp } from "../../firebase"
-import { signInAction, signOutAction, fetchProductsInCartAction } from './actions' 
+import { signInAction, signOutAction, fetchProductsInCartAction, fetchOrdersHistoryAction } from './actions' 
+
+export const fetchOrdersHistory = () => {
+  return async (dispath, getState) => {
+    const uid = getState().users.uid;
+    const list = [];
+
+    db.collection("users").doc(uid) 
+      .collection("orders")
+      .orderBy("updated_at","desc")
+      .get()
+      .then((snapshots) => {
+        snapshots.forEach(snapshot => {
+          const data = snapshot.data()
+          list.push(data)
+        })
+        dispath(fetchOrdersHistoryAction(list))
+      })
+  }
+}
 
 export const saveProfile = (username, tell, zipCord, address) => {
   return async (dispatch, getState) => {

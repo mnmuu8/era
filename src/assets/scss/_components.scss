@@ -1,10 +1,6 @@
 .c-header {
   box-shadow: 0 4px 4px #BBB;
   background-color: #FFF;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   .inner {
     display: flex;
     justify-content: space-between;
@@ -42,7 +38,7 @@
 }
 
 .c-primary-button {
-  width: 100%;
+  width: 256px;
   height: 48px;
   background-color: rgb(158, 214, 216) !important;
   margin-top: 32px !important;
@@ -86,5 +82,33 @@
   }
   .delete-btn {
     width: 60px;
+  }
+}
+
+.c-text-detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.c-order-history-item {
+  background-color: #EEE;
+  padding: 20px;
+}
+
+.c-ordered-products {
+  background-color: #FFF;
+  .avater {
+    img {
+      width: 140px;
+      height: 140px;
+    }
+  }
+  .detail {
+    width: calc(100% - 440px);
+    padding: 0 20px;
+  }
+  .button {
+    width: 256px;
   }
 }

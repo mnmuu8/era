@@ -13,9 +13,7 @@ const ProductList = () => {
   useEffect(() => {
     dispatch(fetchProducts())
   }, [])
-
-  console.log(products)
-
+  
   return (
     <section className='t-product-list'>
       <div className='product__all'>
