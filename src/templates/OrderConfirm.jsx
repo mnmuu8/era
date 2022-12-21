@@ -5,10 +5,10 @@ import List from '@material-ui/core/List';
 import { getProductsInCart } from '../reducks/users/selectors';
 import { CartListItem } from "../components/Products"
 import { PrimaryButton, TextDetail } from '../components/UIkit';
-// import { orderProduct } from '../redux/products/operations';
+import { orderProduct } from '../reducks/products/operations';
 
 const OrderConfirm = () => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const selector = useSelector(state => state)
   const productsInCart = getProductsInCart(selector)
 
@@ -21,6 +21,10 @@ const OrderConfirm = () => {
   const tax = subtotal * 0.1
 
   const total = subtotal + shippingFee + tax
+
+  const order = useCallback((productsInCart, total) => {
+    dispatch(orderProduct(productsInCart, total))
+  }, [productsInCart, total])
 
   return (
     <section className='t-order-confirm'>
@@ -41,7 +45,7 @@ const OrderConfirm = () => {
               <Divider />
               <TextDetail label="合計（税込）" value={"¥" + total} />
               <PrimaryButton label={"注文する"} 
-                // onClick={() => order(productsInCart, total)}
+                onClick={() => order(productsInCart, total)}
               />
           </div>
         </div>
