@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import Auth from "./Auth";
 
-import { SignIn, Reset, SignUp, ProductEdit, ProductList, MyPage, MyPageEdit, CartList, OrderConfirm } from "./templates";
+import { SignIn, Reset, SignUp, ProductEdit, ProductList, MyPage, MyPageEdit, CartList, OrderConfirm, OrderHistory } from "./templates";
 import ProductDetail from "./templates/ProductDetail";
 
 const Router = () => {
@@ -21,6 +21,7 @@ const Router = () => {
 
         <Route exact path={"/order/confirm"} component={OrderConfirm} />
         <Route exact path={"/cart"} component={CartList} />
+        <Route exact path={"/order/history"} component={OrderHistory} />
       </Auth>
     </Switch>
   )

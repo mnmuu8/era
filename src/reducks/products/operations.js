@@ -68,7 +68,7 @@ export const orderProduct = (productsInCart, amount) => {
         const history = {
           amount: amount,
           created_at: timestamp,
-          id: orderRef,
+          id: orderRef.id,
           products: products,
           shipping_date: shippingDate,
           updated_at: timestamp,
