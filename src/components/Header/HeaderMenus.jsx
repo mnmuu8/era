@@ -9,6 +9,7 @@ import { getProductsInCart } from '../../reducks/users/selectors'
 import { db } from '../../firebase'
 import { getUserId } from '../../reducks/users/selectors'
 import { fetchProductsInCart } from '../../reducks/users/operations'
+import { push } from 'connected-react-router'
 
 
 const HeaderMenus = (props) => {
@@ -16,7 +17,7 @@ const HeaderMenus = (props) => {
   const selector = useSelector(state => state)
   const uid = getUserId(selector)
   const dispatch = useDispatch();
-  const productsInCart = getProductsInCart(selector)
+  let productsInCart = getProductsInCart(selector)
 
   useEffect(() => {
     const unsubscribe = db.collection("users").doc(uid).collection("cart")
@@ -33,8 +34,8 @@ const HeaderMenus = (props) => {
             const index = productsInCart.findIndex(product => product.cartId === change.doc.id)
             productsInCart[index] = product
             break;
-          case "removed":
-            productsInCart = productsInCart.filter(product => product.cartId !== change.doc.id)
+          case 'removed':
+            productsInCart = productsInCart.filter(product => product.cartId !== change.doc.id);
             break;
           default:
             break;
@@ -49,7 +50,7 @@ const HeaderMenus = (props) => {
   return (
     <>
       <IconButton>
-        <Badge badgeContent={productsInCart.length} color="secondary" overlap="rectangular">
+        <Badge badgeContent={productsInCart.length} color="secondary" overlap="rectangular" onClick={() => dispatch(push("/cart"))}>
           <ShoppingCart />
         </Badge>
       </IconButton>
