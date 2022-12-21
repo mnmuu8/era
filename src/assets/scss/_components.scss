@@ -60,3 +60,14 @@
     justify-content: space-between;
   }
 }
+
+.c-closable-drawer {
+  .inner {
+    width: 256px;
+  }
+}
+.search__field {
+  display: flex ;
+  align-items: center ;
+  margin-left: 20px;
+}
