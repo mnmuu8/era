@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux'
 import { db } from '../firebase';
 import HTMLReactParser from "html-react-parser"
 import { ImageSwiper } from '../components/Products';
-import { IconButton } from '@material-ui/core';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+// import { IconButton } from '@material-ui/core';
+// import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+// import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import AccessoryTable from '../components/Products/AccessoryTable';
 
 const returnCodeToBr = (text) => {
   if (text === "") {
@@ -40,7 +41,7 @@ const ProductDetail = () => {
           <div className='p__detail'>
             <h2 className='p__name'>{product.name}</h2>
             <p className='p__description'>{returnCodeToBr(product.description)}</p>
-            <div className='p__quantity'>
+            {/* <div className='p__quantity'>
               <p>{"残り" + product.quantity + "つ"}</p>
               <div className='icons'>
                 <IconButton>
@@ -50,7 +51,8 @@ const ProductDetail = () => {
                   <FavoriteBorderIcon />
                 </IconButton>
               </div>
-            </div>
+            </div> */}
+            <AccessoryTable accessories={product.accessories} />
             <p className='p__price'>{"¥" + product.price}</p>
           </div>
         </div>

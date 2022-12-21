@@ -30,7 +30,7 @@ export const fetchProducts = () => {
   }
 }
 
-export const saveProduct = (id, name, description, price, images, quantity) => {
+export const saveProduct = (id, name, description, price, images, size, accessories) => {
   return async (dispatch) => {
     const timestamp = FirebaseTimestamp.now();
 
@@ -39,7 +39,8 @@ export const saveProduct = (id, name, description, price, images, quantity) => {
       images: images,
       description: description,
       price: parseInt(price, 10),
-      quantity: quantity,
+      size: size,
+      accessories: accessories,
       updated_at: timestamp
     }
 

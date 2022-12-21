@@ -4,6 +4,7 @@ import ImageArea from '../components/Products/ImageArea';
 import { PrimaryButton, TextInput } from '../components/UIkit'
 import { db } from '../firebase';
 import { saveProduct } from '../reducks/products/operations';
+import { SetAccessoryType } from '../components/Products';
 
 const ProductEdit = () => {
   const dispatch = useDispatch();
@@ -15,8 +16,9 @@ const ProductEdit = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [size, setSize] = useState("");
   const [images, setImages] = useState([]);
+  const [accessories, setAccessories] = useState([]);
 
   const inputName = useCallback((e) => {
     setName(e.target.value);
@@ -27,9 +29,9 @@ const ProductEdit = () => {
   const inputPrice = useCallback((e) => {
     setPrice(e.target.value);
   }, [setPrice])
-  const inputQuantity = useCallback((e) => {
-    setQuantity(e.target.value);
-  }, [setQuantity])
+  const inputSize = useCallback((e) => {
+    setSize(e.target.value);
+  }, [setSize])
 
   useEffect(() => {
     if (id !== "") {
@@ -40,7 +42,8 @@ const ProductEdit = () => {
         setName(data.name)
         setDescription(data.description)
         setPrice(data.price)
-        setQuantity(data.quantity)
+        setSize(data.size)
+        setAccessories(data.accessories)
       })
     }
     console.log(id)
@@ -65,10 +68,11 @@ const ProductEdit = () => {
             minRows={1} value={price} type={"number"} onChange={inputPrice}
           />
           <TextInput 
-            fullWidth={true} label={"個数"} multiline={false} required={true}
-            minRows={1} value={quantity} type={"number"} onChange={inputQuantity}
+            fullWidth={true} label={"サイズ"} multiline={false} required={true}
+            minRows={1} value={size} type={"text"} onChange={inputSize}
           />
-          <PrimaryButton label={"商品情報を登録"} onClick={() => dispatch(saveProduct(id, name, description, price, images, quantity))} />
+          <SetAccessoryType accessories={accessories} setAccessories={setAccessories} />
+          <PrimaryButton label={"商品情報を登録"} onClick={() => dispatch(saveProduct(id, name, description, price, images, size, accessories))} />
         </div>
       </div>
     </section>
