@@ -46,7 +46,6 @@ const ProductEdit = () => {
         setAccessories(data.accessories)
       })
     }
-    console.log(id)
   }, [id])
 
   return (
