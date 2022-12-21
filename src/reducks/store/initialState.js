@@ -7,7 +7,10 @@ const initialState = {
     isSignedIn: false,
     role: "",
     uid: "",
-    username: ""
+    username: "",
+    address: "",
+    tell: "",
+    zipCord: "",
   }
 }
 

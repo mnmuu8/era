@@ -2,6 +2,27 @@ import { push } from "connected-react-router";
 import { auth, db, FirebaseTimestamp } from "../../firebase"
 import { signInAction, signOutAction, fetchProductsInCartAction } from './actions' 
 
+export const saveProfile = (username, tell, zipCord, address) => {
+  return async (dispatch, getState) => {
+    const uid = getState().users.uid
+    const timestamp = FirebaseTimestamp.now();
+    const data = {
+      username: username,
+      tell: tell,
+      zipCord: zipCord,
+      address: address,
+      updated_at: timestamp
+    }
+
+    return db.collection("users").doc(uid).set(data, {merge: true})
+      .then(() => {
+        dispatch(push("/user/mypage"))
+      }).catch((err) => {
+        throw new Error(err)
+      })
+  }
+}
+
 export const listenAuthState = () => {
   return async (dispatch) => {
 
@@ -54,7 +75,10 @@ export const signUp = (username, email, password, confirmPassword) => {
             role: "customer",
             uid: uid,
             updated_at: timestamp,
-            username: username
+            username: username,
+            tell: "",
+            zipCord: "",
+            address: "",
           }
 
           db.collection("users").doc(uid).set(userInitialData)
@@ -108,7 +132,10 @@ export const signIn = (email, password) => {
                 isSignedIn: true,
                 role: data.role,
                 uid: uid,
-                username: data.username
+                username: data.username,
+                tell: data.tell,
+                zipCord: data.zipCord,
+                address: data.address
               }))
 
               dispatch(push("/"))
