@@ -107,3 +107,27 @@
     }
   }
 }
+
+.t-order-confirm {
+  .inner {
+    max-width: 920px;
+    width: 90%;
+    margin: 0 auto;
+    .wrap {
+      display: flex;
+      justify-content: space-between;
+      .order__detail {
+        border-radius: 4px;
+        box-shadow: 
+          0px 2px 1px -1px rgb(0 0 0 / 20%), 
+          0px 1px 1px 0px rgb(0 0 0 / 14%), 
+          0px 1px 3px 0px rgb(0 0 0 / 12%);
+        padding: 24px;
+        width: 320px;
+      }
+      .product__detail {
+        width: calc(100% - 360px);
+      }
+    }
+  }
+}

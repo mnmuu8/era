@@ -15,7 +15,6 @@ const ImageArea = ({images, setImages}) => {
       return storage.ref("images").child(id).delete()
     }
   }, [images])
-  console.log(images.length)
 
   const uploadImage = useCallback((e) => {
     const file = e.target.files;
