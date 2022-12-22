@@ -5,10 +5,10 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart'
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder'
 import MenuIcon from '@material-ui/icons/Menu';
 import { useSelector, useDispatch } from 'react-redux'
-import { getProductsInCart } from '../../reducks/users/selectors'
+import { getFavoriteList, getProductsInCart } from '../../reducks/users/selectors'
 import { db } from '../../firebase'
 import { getUserId } from '../../reducks/users/selectors'
-import { fetchProductsInCart } from '../../reducks/users/operations'
+import { fetchProductsInCart, fetchProductsFavorite } from '../../reducks/users/operations'
 import { push } from 'connected-react-router'
 
 
@@ -18,6 +18,7 @@ const HeaderMenus = (props) => {
   const uid = getUserId(selector)
   const dispatch = useDispatch();
   let productsInCart = getProductsInCart(selector)
+  let productsFavorite = getFavoriteList(selector)
 
   useEffect(() => {
     const unsubscribe = db.collection("users").doc(uid).collection("cart")
@@ -47,6 +48,34 @@ const HeaderMenus = (props) => {
     return () => unsubscribe()
   }, [])
 
+  useEffect(() => {
+    const unsubscribe = db.collection("users").doc(uid).collection("favorite")
+    .onSnapshot(snapshots => {
+      snapshots.docChanges().forEach(change => {
+        const product = change.doc.data();
+        const changeType = change.type
+        
+        switch(changeType) {
+          case "added":
+            productsFavorite.push(product)
+            break;
+          case "modified":
+            const index = productsFavorite.findIndex(product => product.favoriteId === change.doc.id)
+            productsFavorite[index] = product
+            break;
+          case 'removed':
+            productsFavorite = productsFavorite.filter(product => product.favoriteId !== change.doc.id);
+            break;
+          default:
+            break;
+        }
+      })
+      dispatch(fetchProductsFavorite(productsFavorite))
+    })
+
+    return () => unsubscribe()
+  }, [])
+
   return (
     <>
       <IconButton>
@@ -55,7 +84,9 @@ const HeaderMenus = (props) => {
         </Badge>
       </IconButton>
       <IconButton>
-        <FavoriteBorder />
+        <Badge badgeContent={productsFavorite.length} color="secondary" overlap="rectangular" onClick={() => dispatch(push("/favorite"))}>
+          <FavoriteBorder />
+        </Badge>
       </IconButton>
       <IconButton onClick={(e) => props.handleDrawerToggle(e)}>
         <MenuIcon />

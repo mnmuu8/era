@@ -45,3 +45,11 @@ export const fetchProductsInCartAction = (products) => {
     payload: products
   }
 }
+
+export const FETCH_PRODUCTS_FAVORITE = "FETCH_PRODUCTS_FAVORITE";
+export const fetchProductsFavoriteAction = (products) => {
+  return {
+    type: FETCH_PRODUCTS_FAVORITE,
+    payload: products
+  }
+}

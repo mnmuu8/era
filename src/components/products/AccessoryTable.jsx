@@ -1,10 +1,13 @@
 import { IconButton, Table, TableBody, TableCell, TableContainer, TableRow } from '@material-ui/core'
-import React from 'react'
+import React, { useState } from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const AccessoryTable = (props) => {
   const accessories = props.accessories
+
+  const [favo, setFavo] = useState(false);
 
   return (
     <TableContainer>
@@ -24,7 +27,8 @@ const AccessoryTable = (props) => {
                 </TableCell>
                 <TableCell>
                   {accessory.quantity > 0 ? (
-                    <IconButton style={{ padding: 0 }}
+                    <IconButton 
+                      style={{ padding: 0 }}
                       onClick={() => props.addProduct(accessory.color)}
                     >
                       <ShoppingCartIcon />
@@ -34,8 +38,14 @@ const AccessoryTable = (props) => {
                   )}
                 </TableCell>
                 <TableCell>
-                  <IconButton style={{ padding: 0 }}>
-                    <FavoriteBorderIcon />
+                  <IconButton 
+                    style={{ padding: 0 }}
+                    onClick={() => {
+                      props.addFavorite(accessory.color)
+                      setFavo(!favo)
+                    }}
+                  >
+                    {favo ? <FavoriteIcon color={"secondary"} /> : <FavoriteBorderIcon />}
                   </IconButton>
                 </TableCell>
               </TableRow>
