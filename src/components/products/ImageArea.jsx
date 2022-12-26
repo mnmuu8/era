@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { IconButton, makeStyles } from '@material-ui/core'
+import { IconButton } from '@material-ui/core'
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate"
 import { storage } from '../../firebase'
 import ImagePreview from './ImagePreview'

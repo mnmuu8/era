@@ -16,6 +16,8 @@ const FavoriteListItem = (props) => {
   const image = props.product.images[0].path
   const price = props.product.price.toLocaleString();
   const size = props.product.size
+  const color = props.product.accessory.color
+  const type = props.product.accessory.type
   const dispatch = useDispatch()
   const selector = useSelector(state => state)
   const uid = getUserId(selector)
@@ -25,27 +27,28 @@ const FavoriteListItem = (props) => {
   }
 
   return (
-    <div>
-      <ListItem className='c-cart-list-item'>
+    <>
+      <ListItem className='c-favorite-list-item'>
         <ListItemAvater className='avater'>
           <img src={image} alt="商品画像" />
         </ListItemAvater>
         <div className='detail'>
           <ListItemText 
             primary={name}
-            secondary={"サイズ：" + size}
+            secondary={`Color: ${color} / Type: ${type} / Size: ${size}`}
           />
           <ListItemText 
+            className='price'
             primary={"¥" + price}
           />
         </div>
-        <PrimaryButton label={"商品詳細"} onClick={() => dispatch(push("/product/" + props.product.productId))} />
-        <IconButton className='delete-btn' onClick={() => removeProductFromFavorite(props.product.favoriteId)}>
+        <PrimaryButton label={"商品詳細を見る"} onClick={() => dispatch(push("/product/" + props.product.productId))} />
+        <IconButton className='circle-icon' onClick={() => removeProductFromFavorite(props.product.favoriteId)}>
           <DeleteIcon />
         </IconButton>
       </ListItem>
       <Divider />
-    </div>
+    </>
   )
 }
 

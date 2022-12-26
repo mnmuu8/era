@@ -1,7 +1,7 @@
 import React from 'react'
 import List from '@material-ui/core/List'
 import { getFavoriteList } from '../reducks/users/selectors'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { FavoriteListItem } from '../components/Products'
 
 const FavoriteList = () => {
@@ -12,11 +12,13 @@ const FavoriteList = () => {
     <section className='t-favorite-list'>
       <div className='inner'>
         <h2 className='s__head'>お気に入り</h2>
-        <List>
-          {productsFavorite.length > 0 && (
-            productsFavorite.map(product => <FavoriteListItem product={product} key={product.favoriteId} />)
-          )}
-        </List>
+        <div className='s__body'>
+          <List className='product__all'>
+            {productsFavorite.length > 0 && (
+              productsFavorite.map(product => <FavoriteListItem product={product} key={product.favoriteId} />)
+            )}
+          </List>
+        </div>
       </div>
     </section>
   )

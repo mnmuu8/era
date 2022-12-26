@@ -47,6 +47,7 @@ const ProductEdit = () => {
         setPrice(data.price)
         setSize(data.size)
         setAccessories(data.accessories)
+        setCategory(data.category)
       })
     }
   }, [id])
@@ -69,10 +70,10 @@ const ProductEdit = () => {
   }, [])
 
   return (
-    <section className='section t-product-edit'>
-      <div className='section__inner'>
+    <section className='t-product-edit'>
+      <div className='inner'>
         <h2 className='s__head'>商品の登録・編集</h2>
-        <div className='section__body'>
+        <div className='s__body'>
           <ImageArea images={images} setImages={setImages} />
           <TextInput 
             fullWidth={true} label={"商品名"} multiline={false} required={true}

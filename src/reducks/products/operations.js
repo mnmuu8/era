@@ -22,7 +22,7 @@ export const orderProduct = (productsInCart, amount) => {
       const accessories =  snapshot.data().accessories;
 
       const updatedAccessories = accessories.map(accessory => {
-        if( accessory.color === product.color ) {
+        if( accessory.color === product.accessory.color ) {
           if (accessory.quantity === 0) {
             soldOutProducts.push(product.name)
             return accessory
@@ -43,6 +43,7 @@ export const orderProduct = (productsInCart, amount) => {
         name: product.name,
         price: product.price,
         accessory: product.accessory,
+        size: product.size
       })
 
       batch.update(

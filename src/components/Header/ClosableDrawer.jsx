@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react'
-// import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -13,15 +12,19 @@ import HistoryIcon from '@material-ui/icons/History'
 import PersonIcon from '@material-ui/icons/Person'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import TextInput from '../UIkit/TextInput'
-import { useDispatch } from 'react-redux'
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
 import { signOut } from '../../reducks/users/operations'
 import { db } from '../../firebase'
 import { Divider } from '@material-ui/core'
+import { getUserRole } from '../../reducks/users/selectors'
 
 const ClosableDrawer = (props) => {
   const { container } = props
   const dispatch = useDispatch();
+  const selector = useSelector(state => state)
+  const role = getUserRole(selector)
   const [keyword, setKeyword] = useState("")
 
   const inputKeyword = useCallback((e) => {
@@ -38,10 +41,17 @@ const ClosableDrawer = (props) => {
   ])
 
   const menus = [
-    {func: selectMenu, label: "商品一覧", icon: <AssignmentIcon />, id: "list", value: "/list"},
+    {func: selectMenu, label: "商品一覧", icon: <AssignmentIcon />, id: "list", value: "/"},
     {func: selectMenu, label: "商品登録", icon: <AddCircleIcon />, id: "register", value: "/product/edit"},
     {func: selectMenu, label: "注文履歴", icon: <HistoryIcon />, id: "history", value: "/order/history"},
     {func: selectMenu, label: "プロフィール", icon: <PersonIcon />, id: "profile", value: "/user/mypage"},
+    {func: selectMenu, label: "問い合わせ", icon: <MailOutlineIcon />, id: "contact", value: "/"},
+  ]
+  const userMenus = [
+    {func: selectMenu, label: "商品一覧", icon: <AssignmentIcon />, id: "list", value: "/"},
+    {func: selectMenu, label: "注文履歴", icon: <HistoryIcon />, id: "history", value: "/order/history"},
+    {func: selectMenu, label: "プロフィール", icon: <PersonIcon />, id: "profile", value: "/user/mypage"},
+    {func: selectMenu, label: "問い合わせ", icon: <MailOutlineIcon />, id: "contact", value: "/"},
   ]
 
   const searchKeyword = (e, path) => {
@@ -86,22 +96,44 @@ const ClosableDrawer = (props) => {
               <SearchIcon />
             </IconButton>
           </div>
+          <div className='drawer__title'>メニュー</div>
+          <Divider />
           <List>
-            {menus.map(menu => (
-              <ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
-                <ListItemIcon>
-                  {menu.icon}
-                </ListItemIcon>
-                <ListItemText primary={menu.label} />
-              </ListItem>
-            ))}
-            <ListItem button key="logout" onClick={() => dispatch(signOut())}>
+            {role === "admin" ? (
+              menus.map(menu => (
+                <ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
+                  <ListItemIcon>
+                    {menu.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={menu.label} />
+                </ListItem>
+              ))
+            ) : (
+              userMenus.map(menu => (
+                <ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
+                  <ListItemIcon>
+                    {menu.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={menu.label} />
+                </ListItem>
+              ))
+            )}
+            
+            <ListItem 
+              button 
+              key="logout" 
+              onClick={(e) => {
+                dispatch(signOut())
+                props.onClose(e)
+              }}
+            >
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>
-              <ListItemText primary={"Logout"} />
+              <ListItemText primary={"サインアウト"} />
             </ListItem>
           </List>
+          <div className='drawer__title'>カテゴリー</div>
           <Divider />
           <List>
             {filters.map(filter => (

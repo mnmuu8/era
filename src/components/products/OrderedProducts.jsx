@@ -26,10 +26,10 @@ const OrderedProducts = (props) => {
               <img alt={"注文した画像"} src={product.images[0].path} />
             </ListItemAvatar>
             <div className='detail'>
-              <ListItemText primary={product.name} secondary={"サイズ:" + product.size} />
-              <ListItemText primary={"¥" + product.price.toLocaleString()} />
+              <ListItemText primary={product.name} secondary={`Color: ${product.accessory.color} / Type: ${product.accessory.type} / Size: ${product.size}`} />
+              <ListItemText className='price' primary={"¥" + product.price.toLocaleString()} />
             </div>
-            <PrimaryButton className="button" label={"注文詳細を見る"} onClick={() => goToProductDetail(product.id)} />
+            <PrimaryButton label={"注文詳細を見る"} onClick={() => goToProductDetail(product.id)} />
           </ListItem>
           <Divider />
         </>

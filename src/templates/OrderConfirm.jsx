@@ -30,7 +30,7 @@ const OrderConfirm = () => {
     <section className='t-order-confirm'>
       <div className='inner'>
         <h2 className='s__head'>注文の確認</h2>
-        <div className='wrap'>
+        <div className='s__body'>
           <div className='product__detail'>
             <List>
               {productsInCart.length > 0 && (
@@ -44,9 +44,7 @@ const OrderConfirm = () => {
               <TextDetail label="送料" value={"¥" + shippingFee.toLocaleString()} />
               <Divider />
               <TextDetail label="合計（税込）" value={"¥" + total} />
-              <PrimaryButton label={"注文する"} 
-                onClick={() => order(productsInCart, total)}
-              />
+              <PrimaryButton label={"注文する"} onClick={() => order(productsInCart, total)} />
           </div>
         </div>
       </div>

@@ -37,12 +37,8 @@ const ProductCard = (props) => {
       />
       <CardContent className='card__contents'>
         <div onClick={() => dispatch(push("products/" + props.id))}>
-          <Typography color="textSecondary" componentcc="p">
-            {props.name}
-          </Typography>
-          <Typography component="p">
-            ¥{price}
-          </Typography>
+          <Typography color="textSecondary" componentcc="p" className='card__name'>{props.name}</Typography>
+          <Typography component="p" className='card__price'>¥{price}</Typography>
         </div>
         <IconButton onClick={handleClick}>
           <MoreVert />

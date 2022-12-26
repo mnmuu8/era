@@ -14,6 +14,7 @@ const CartList = () => {
   const goToOrder = useCallback(() => {
     dispatch(push("/order/confirm"))
   }, [])
+
   // const backToHome = useCallback(() => {
   //   dispatch(push("/"))
   // }, [])
@@ -22,12 +23,14 @@ const CartList = () => {
     <section className='t-cart-list'>
       <div className='inner'>
         <h2 className='s__head'>ショッピングカート</h2>
-        <List>
-          {productsInCart.length > 0 && (
-            productsInCart.map(product => <CartListItem key={product.cartId} product={product} />)
-          )}
-        </List>
-        <PrimaryButton label={"レジへ進む"} onClick={() => {goToOrder()}} />
+        <div className='s__body'>
+          <List className='product__all'>
+            {productsInCart.length > 0 && (
+              productsInCart.map(product => <CartListItem key={product.cartId} product={product} />)
+            )}
+          </List>
+          <PrimaryButton label={"レジへ進む"} onClick={() => {goToOrder()}} />
+        </div>
       </div>
     </section>
   )

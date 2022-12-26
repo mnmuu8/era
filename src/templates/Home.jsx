@@ -1,22 +1,11 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { signOut } from '../reducks/users/operations';
-import { getUserId, getUsername } from '../reducks/users/selectors';
-import ProductList from './ProductList';
+import FV from "../assets/img/fv.jpg"
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const selector = useSelector(state => state);
-  const uid = getUserId(selector)
-  const username = getUsername(selector)
-
   return (
-    <div>
-      <h2>Home</h2>
-      <p>{uid}</p>
-      <p>{username}</p>
-      <button onClick={() => dispatch(signOut())}>サインアウト</button>
-    </div>
+    <section className='t-home'>
+      <div><img src={FV} alt="FV" /></div>
+    </section>
   )
 }
 
