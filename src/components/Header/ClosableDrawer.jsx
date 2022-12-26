@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import IconButton from '@material-ui/core/IconButton'
 import SearchIcon from '@material-ui/icons/Search'
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 import HistoryIcon from '@material-ui/icons/History'
 import PersonIcon from '@material-ui/icons/Person'
@@ -37,7 +38,8 @@ const ClosableDrawer = (props) => {
   ])
 
   const menus = [
-    {func: selectMenu, label: "商品登録", icon: <AddCircleIcon/>, id: "register", value: "/product/edit"},
+    {func: selectMenu, label: "商品一覧", icon: <AssignmentIcon />, id: "list", value: "/list"},
+    {func: selectMenu, label: "商品登録", icon: <AddCircleIcon />, id: "register", value: "/product/edit"},
     {func: selectMenu, label: "注文履歴", icon: <HistoryIcon />, id: "history", value: "/order/history"},
     {func: selectMenu, label: "プロフィール", icon: <PersonIcon />, id: "profile", value: "/user/mypage"},
   ]
