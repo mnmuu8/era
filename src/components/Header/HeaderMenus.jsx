@@ -16,7 +16,6 @@ const HeaderMenus = (props) => {
 
   const selector = useSelector(state => state)
   const uid = getUserId(selector)
-  console.log( `uid ${uid}`)
   const dispatch = useDispatch();
   let productsInCart = getProductsInCart(selector)
   let productsFavorite = getFavoriteList(selector)

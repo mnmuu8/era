@@ -5,13 +5,10 @@ import { fetchProducts } from '../reducks/products/operations';
 import { getProducts } from '../reducks/products/selectors';
 import AddIcon from '@material-ui/icons/Add';
 import { push } from 'connected-react-router';
-import { getUserId, getUserRole } from '../reducks/users/selectors';
 
 const ProductList = () => {
   const dispatch = useDispatch();
   const selector = useSelector(state => state);
-  const uid = getUserId(selector)
-  console.log(uid)
   const products = getProducts(selector)
 
   const query = selector.router.location.search;

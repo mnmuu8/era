@@ -1,16 +1,20 @@
 main {
   padding: 80px 0;
 }
-
 .s__head {
   text-align: center;
   margin-bottom: 36px;
 }
-
 .d-none {
   display: none;
 }
 .circle-icon {
   width: 46px;
   height: 46px;
+}
+.MuiAlert-outlinedSuccess {
+  background-color: #FFF !important;
+}
+.MuiBadge-colorSecondary {
+  background-color: cadetblue !important;
 }

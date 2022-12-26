@@ -14,7 +14,16 @@
       font-family: 'Dancing Script', cursive;
       font-size: 52px;
       color: #FFF;
+      cursor: pointer;
       transform: translateY(-8px);
+    }
+    .auth__link {
+      display: flex;
+      color: #FFF;
+      p {
+        cursor: pointer;
+        margin-left: 20px;
+      }
     }
     .MuiIconButton-root {
       color: #FFF;
