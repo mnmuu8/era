@@ -35,7 +35,7 @@ const FavoriteListItem = (props) => {
         <div className='detail'>
           <ListItemText 
             primary={name}
-            secondary={`Color: ${color} Type: ${type} / Size: ${size}`}
+            secondary={`Color: ${color} / Type: ${type} / Size: ${size}`}
           />
           <ListItemText 
             className='price'
