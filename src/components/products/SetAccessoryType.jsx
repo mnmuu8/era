@@ -70,9 +70,8 @@ const SetAccessoryType = (props) => {
   //   setIndex(props.accessories.length)
   // }, [props.accessories.length])
 
-
   return (
-    <div>
+    <div className='c-accessory-type'>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -80,8 +79,8 @@ const SetAccessoryType = (props) => {
               <TableCell>カラー</TableCell>
               <TableCell>タイプ</TableCell>
               <TableCell>数量</TableCell>
-              <TableCell/>
-              <TableCell/>
+              <TableCell />
+              <TableCell />
             </TableRow>
           </TableHead>
           <TableBody>
@@ -106,7 +105,7 @@ const SetAccessoryType = (props) => {
             )}
           </TableBody>
         </Table>
-        <div>
+        <div className='input__area'>
           <TextInput 
             fullWidth={false} label={"カラー"} multiline={false} required={true}
             onChange={inputColor} minRows={1} value={color} type={"text"}
@@ -120,7 +119,7 @@ const SetAccessoryType = (props) => {
             onChange={inputQuantity} minRows={1} value={quantity} type={"number"}
           />
         </div>
-        <IconButton onClick={() => addAccessory(index, color, type, quantity)}>
+        <IconButton className='submit__btn' onClick={() => addAccessory(index, color, type, quantity)}>
           <CheckCircleIcon />
         </IconButton>
       </TableContainer>

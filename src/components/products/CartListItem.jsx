@@ -14,6 +14,8 @@ const CartListItem = (props) => {
   const image = props.product.images[0].path
   const price = props.product.price.toLocaleString();
   const size = props.product.size
+  const color = props.product.accessory.color
+  const type = props.product.accessory.type
   const selector = useSelector(state => state)
   const uid = getUserId(selector)
 
@@ -30,13 +32,14 @@ const CartListItem = (props) => {
         <div className='detail'>
           <ListItemText 
             primary={name}
-            secondary={"サイズ：" + size}
+            secondary={`Color: ${color} / Type: ${type} / Size: ${size}`}
           />
           <ListItemText 
+            className='price'
             primary={"¥" + price}
           />
         </div>
-        <IconButton className='delete-btn' onClick={() => removeProductFromCart(props.product.cartId)}>
+        <IconButton className='circle-icon' onClick={() => removeProductFromCart(props.product.cartId)}>
           <DeleteIcon />
         </IconButton>
       </ListItem>

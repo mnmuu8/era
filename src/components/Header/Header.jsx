@@ -23,7 +23,7 @@ const Header = () => {
     <>
       <header className='c-header'>
         <div className='inner'>
-          <h1 onClick={() => dispatch(push("/"))}>ロゴ</h1>
+          <h1 className='logo' onClick={() => dispatch(push("/"))}>era</h1>
           {isSignedIn && (
             <div>
               <HeaderMenus handleDrawerToggle={handleDrawerToggle} />

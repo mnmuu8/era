@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
 html, body {
   margin: 0;
   padding: 0;
@@ -17,6 +19,12 @@ a {
 
 ul li {
   list-style-type: none;
+}
+
+img {
+  vertical-align: top;
+  max-width: 100%;
+  height: auto;
 }
 
 blockquote, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, li, ol, p, pre, td, th, ul {

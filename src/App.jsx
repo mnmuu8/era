@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import Router from './Router';
 import "../src/assets/scss/styles.scss"
 import AppContext from './context/AppContext';
+import { Footer } from './components/Footer';
 
 function App() {
   const [open, setOpen] = React.useState(false);
@@ -29,6 +30,7 @@ function App() {
         <main>
           <Router />
         </main>
+        <Footer />
       </>
     </AppContext.Provider>
   );

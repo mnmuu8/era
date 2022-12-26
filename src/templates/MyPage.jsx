@@ -25,7 +25,7 @@ const MyPage = () => {
     <section className='t-mypage'>
       <div className='inner'>
         <h2 className='s__head'>プロフィール</h2>
-        <div className='wrap'>
+        <div className='s__body'>
           <div className='row'>
             <h4>お名前</h4>
             <p>{profile.username}</p>
@@ -42,9 +42,7 @@ const MyPage = () => {
             <h4>住所</h4>
             <p>{profile.address}</p>
           </div>
-          <div className=''>
-            <PrimaryButton label={"編集"} onClick={() => dispatch(push("/user/mypage/edit"))} />
-          </div>
+          <PrimaryButton label={"編集"} onClick={() => dispatch(push("/user/mypage/edit"))} />
         </div>
       </div>
     </section>

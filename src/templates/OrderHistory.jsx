@@ -18,11 +18,13 @@ const OrderHistory = () => {
     <section className='t-order-history'>
       <div className='inner'>
         <h2 className='s__head'>注文履歴</h2>
-        <List>
-          {orders.length > 0 && (
-            orders.map(order => <OrderHistoryItem order={order} key={order.id} />)
-          )}
-        </List>
+        <div className='s__body'>
+          <List>
+            {orders.length > 0 && (
+              orders.map(order => <OrderHistoryItem order={order} key={order.id} />)
+            )}
+          </List>
+        </div>
       </div>
     </section>
   )

@@ -22,7 +22,7 @@ const ProductDetail = () => {
 
   const [product, setProduct] = useState(null)
 
-  const addProduct = useCallback((selectedColor) => {
+  const addProduct = useCallback((selectedAccessory) => {
     const timestamp = FirebaseTimestamp.now();
     dispatch(addProductToCart({
       added_at: timestamp,
@@ -31,13 +31,13 @@ const ProductDetail = () => {
       images: product.images,
       price: product.price,
       size: product.size,
-      accessory: selectedColor,
+      accessory: selectedAccessory,
       productId: product.id,
       quantity: 1,
     }))
   }, [product])
 
-  const addFavorite = useCallback((selectedColor) => {
+  const addFavorite = useCallback((selectedAccessory) => {
     const timestamp = FirebaseTimestamp.now();
     dispatch(addProductToFavoriteList({
       added_at: timestamp,
@@ -46,7 +46,7 @@ const ProductDetail = () => {
       images: product.images,
       price: product.price,
       size: product.size,
-      accessory: selectedColor,
+      accessory: selectedAccessory,
       productId: product.id,
       quantity: 1,
     }))
@@ -62,19 +62,21 @@ const ProductDetail = () => {
 
   return (
     <section className='t-product-detail'>
-      {product && (
-        <div className='inner'>
-          <div className='p__slide'>
-            <ImageSwiper images={product.images} />
+      <div className='inner'>
+        {product && (
+          <div className='product'>
+            <div className='product__slide'>
+              <ImageSwiper images={product.images} />
+            </div>
+            <div className='product__detail'>
+              <h2 className='product__name'>{product.name}</h2>
+              <p className='product__price'>{"¥" + product.price.toLocaleString()}</p>
+              <AccessoryTable addFavorite={addFavorite} addProduct={addProduct} accessories={product.accessories} />
+              <p className='product__description'>{returnCodeToBr(product.description)}</p>
+            </div>
           </div>
-          <div className='p__detail'>
-            <h2 className='p__name'>{product.name}</h2>
-            <p className='p__description'>{returnCodeToBr(product.description)}</p>
-            <AccessoryTable addFavorite={addFavorite} addProduct={addProduct} accessories={product.accessories} />
-            <p className='p__price'>{"¥" + product.price}</p>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </section>
   )
 }

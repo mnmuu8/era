@@ -31,7 +31,6 @@ const OrderHistoryItem = (props) => {
       <TextDetail label={"注文日時"} value={orderedDatetime} />
       <TextDetail label={"発送予定日"} value={shippingDate} />
       <TextDetail label={"注文金額"} value={amount} />
-
       { order.products.length > 0 && (
         <OrderedProducts products={order.products} key={order.id} />
       )}

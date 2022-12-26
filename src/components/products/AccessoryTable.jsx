@@ -16,7 +16,7 @@ const AccessoryTable = (props) => {
   }
 
   return (
-    <TableContainer>
+    <TableContainer className='c-accessory-table'>
       <Table>
         <TableBody>
           {accessories.length > 0 && (
@@ -36,7 +36,7 @@ const AccessoryTable = (props) => {
                     <IconButton 
                       style={{ padding: 0 }}
                       onClick={() => {
-                        props.addProduct(accessory.color)
+                        props.addProduct(accessory)
                         flashChangeMessage("cart")
                       }}
                     >
@@ -50,7 +50,7 @@ const AccessoryTable = (props) => {
                   <IconButton 
                     style={{ padding: 0 }}
                     onClick={() => {
-                      props.addFavorite(accessory.color)
+                      props.addFavorite(accessory)
                       flashChangeMessage("favo")
                     }}
                   >

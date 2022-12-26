@@ -1,58 +1,79 @@
-.t-product-edit {
-  max-width: 520px;
-  width: 90%;
-  margin: 0 auto;
-}
-.t-product-detail {
+// ==============================================
+// 商品一覧
+// ==============================================
+
+.t-product-list {
   .inner {
-    width: 1020px;
+    position: relative;
+    max-width: 960px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    .p__slide {
-      width: 320px;
-      height: 320px;
-      .swiper-slide {
-        height: 320px;
-      }
-      img {
-        width: 100%;
-        height: 100% ;
-        object-fit: cover;
-      }
+    width: 90%;
+    .product__all {
+      display: flex;
+      flex-wrap: wrap;
     }
-    .p__detail {
-      width: calc((100% - 100px) - 320px);
-      .p__name {
-        font-size: 32px;
-        margin-bottom: 10px;
-        font-weight: normal;
-      }
-      .p__quantity {
-        padding: 10px 0;
-        margin: 40px 0 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-top: 1px solid #EEE;
-        border-bottom: 1px solid #EEE;
-      }
-      .p__price {
-        color: cadetblue;
-        font-size: 32px;
+    .add-btn {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background-color: #CB4306;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      bottom: -40px;
+      right: -120px;
+      cursor: pointer;
+      .icon {
+        color: #FFF;
+        font-size: 44px;
       }
     }
   }
 }
 
-.t-product-list {
-  .product__all {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 1020px;
+.t-product-edit {
+  max-width: 520px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.t-product-detail {
+  .inner {
+    max-width: 960px;
     width: 90%;
     margin: 0 auto;
+    .product {
+      display: flex;
+      justify-content: space-between;
+      .product__slide {
+        width: 300px;
+        height: 300px;
+        .swiper-slide {
+          height: 300px;
+        }
+        img {
+          width: 100%;
+          height: 100% ;
+          object-fit: cover;
+        }
+      }
+      .product__detail {
+        width: calc((100% - 60px) - 300px);
+        .product__name {
+          font-size: 32px;
+          margin-bottom: 10px;
+          font-weight: normal;
+        }
+        .product__price {
+          color: cadetblue;
+          font-size: 32px;
+        }
+        .product__description {
+          line-height: 1.8;
+        }
+      }
+    }
   }
 }
 
@@ -61,6 +82,9 @@
     max-width: 520px;
     width: 90%;
     margin: 0 auto;
+    .c-primary-button {
+      margin-top: 30px;
+    }
     .auth__link {
       text-align: center;
       margin-top: 30px;
@@ -76,11 +100,14 @@
 }
 
 
-.t-cart-list {
+.t-cart-list, .t-favorite-list {
   .inner {
-    max-width: 920px;
+    max-width: 768px;
     width: 90%;
     margin: 0 auto;
+    .product__all {
+      margin-bottom: 30px;
+    }
   }
 }
 
@@ -89,13 +116,13 @@
     max-width: 520px;
     width: 90%;
     margin: 0 auto;
-    .wrap {
+    .s__body {
       border-radius: 4px;
       box-shadow: 
         0px 2px 1px -1px rgb(0 0 0 / 20%), 
         0px 1px 1px 0px rgb(0 0 0 / 14%), 
         0px 1px 3px 0px rgb(0 0 0 / 12%);
-      padding: 24px;
+      padding: 20px;
       .row {
         border-bottom: 1px solid #EEE;
         margin-bottom: 20px;
@@ -104,16 +131,19 @@
           margin-bottom: 10px;
         }
       }
+      .c-primary-button {
+        margin-top: 30px;
+      }
     }
   }
 }
 
 .t-order-confirm {
   .inner {
-    max-width: 920px;
+    max-width: 960px;
     width: 90%;
     margin: 0 auto;
-    .wrap {
+    .s__body {
       display: flex;
       justify-content: space-between;
       .order__detail {
@@ -124,6 +154,9 @@
           0px 1px 3px 0px rgb(0 0 0 / 12%);
         padding: 24px;
         width: 320px;
+        .c-primary-button {
+          margin-top: 20px !important;
+        }
       }
       .product__detail {
         width: calc(100% - 360px);
@@ -133,7 +166,22 @@
 }
 
 .t-order-history {
-  max-width: 760px;
+  max-width: 768px;
   width: 90%;
   margin: 0 auto;
+}
+
+.t-order-complate {
+  max-width: 768px;
+  width: 90%;
+  margin: 0 auto;
+  .s__body {
+    p {
+      text-align: center;
+      line-height: 2;
+    }
+    .c-primary-button {
+      margin-top: 30px;
+    }
+  }
 }

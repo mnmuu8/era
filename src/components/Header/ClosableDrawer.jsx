@@ -13,6 +13,7 @@ import HistoryIcon from '@material-ui/icons/History'
 import PersonIcon from '@material-ui/icons/Person'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import TextInput from '../UIkit/TextInput'
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 import { signOut } from '../../reducks/users/operations'
@@ -38,10 +39,11 @@ const ClosableDrawer = (props) => {
   ])
 
   const menus = [
-    {func: selectMenu, label: "商品一覧", icon: <AssignmentIcon />, id: "list", value: "/list"},
+    {func: selectMenu, label: "商品一覧", icon: <AssignmentIcon />, id: "list", value: "/"},
     {func: selectMenu, label: "商品登録", icon: <AddCircleIcon />, id: "register", value: "/product/edit"},
     {func: selectMenu, label: "注文履歴", icon: <HistoryIcon />, id: "history", value: "/order/history"},
     {func: selectMenu, label: "プロフィール", icon: <PersonIcon />, id: "profile", value: "/user/mypage"},
+    {func: selectMenu, label: "問い合わせ", icon: <MailOutlineIcon />, id: "contact", value: "/"},
   ]
 
   const searchKeyword = (e, path) => {
@@ -86,6 +88,8 @@ const ClosableDrawer = (props) => {
               <SearchIcon />
             </IconButton>
           </div>
+          <div className='drawer__title'>メニュー</div>
+          <Divider />
           <List>
             {menus.map(menu => (
               <ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
@@ -102,6 +106,7 @@ const ClosableDrawer = (props) => {
               <ListItemText primary={"Logout"} />
             </ListItem>
           </List>
+          <div className='drawer__title'>カテゴリー</div>
           <Divider />
           <List>
             {filters.map(filter => (
