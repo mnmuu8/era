@@ -180,7 +180,7 @@ export const addProductToCart = (addedProduct) => {
     const cartRef = db.collection("users").doc(uid).collection("cart").doc()
     addedProduct["cartId"] = cartRef.id
     await cartRef.set(addedProduct)
-    dispatch(push("/"))
+    // dispatch(push("/"))
   }
 }
 
@@ -190,7 +190,7 @@ export const addProductToFavoriteList = (addedProduct) => {
     const favoriteRef = db.collection("users").doc(uid).collection("favorite").doc()
     addedProduct["favoriteId"] = favoriteRef.id
     await favoriteRef.set(addedProduct)
-    dispatch(push("/"))
+    // dispatch(push("/"))
   }
 }
 

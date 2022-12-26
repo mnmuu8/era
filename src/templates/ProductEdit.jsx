@@ -5,7 +5,8 @@ import { PrimaryButton, TextInput } from '../components/UIkit'
 import { db } from '../firebase';
 import { saveProduct } from '../reducks/products/operations';
 import { SetAccessoryType } from '../components/Products';
-
+import { SelectBox } from "../components/UIkit"
+ 
 const ProductEdit = () => {
   const dispatch = useDispatch();
   let id = window.location.pathname.split("product/edit")[1];
@@ -17,6 +18,8 @@ const ProductEdit = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [size, setSize] = useState("");
+  const [category, setCategory] = useState([])
+  const [categories, setCategories] = useState([])
   const [images, setImages] = useState([]);
   const [accessories, setAccessories] = useState([]);
 
@@ -48,6 +51,23 @@ const ProductEdit = () => {
     }
   }, [id])
 
+  useEffect(() => {
+    db.collection("categories")
+      .orderBy('order', 'asc')
+      .get()
+      .then(snapshots => {
+        const list = []
+        snapshots.forEach(snapshot => {
+          const data = snapshot.data()
+          list.push({
+            id: data.id,
+            name: data.name,
+          })
+        })
+        setCategories(list)
+      })
+  }, [])
+
   return (
     <section className='section t-product-edit'>
       <div className='section__inner'>
@@ -66,12 +86,15 @@ const ProductEdit = () => {
             fullWidth={true} label={"価格"} multiline={false} required={true}
             minRows={1} value={price} type={"number"} onChange={inputPrice}
           />
+          <SelectBox 
+            label={"カテゴリー"} required={true} options={categories} value={category} select={setCategory}
+          />
           <TextInput 
             fullWidth={true} label={"サイズ"} multiline={false} required={true}
             minRows={1} value={size} type={"text"} onChange={inputSize}
           />
           <SetAccessoryType accessories={accessories} setAccessories={setAccessories} />
-          <PrimaryButton label={"商品情報を登録"} onClick={() => dispatch(saveProduct(id, name, description, price, images, size, accessories))} />
+          <PrimaryButton label={"商品情報を登録"} onClick={() => dispatch(saveProduct(id, name, description, price, images, size, accessories, category))} />
         </div>
       </div>
     </section>

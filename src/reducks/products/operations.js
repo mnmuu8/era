@@ -97,9 +97,13 @@ export const deleteProduct = (id) => {
   }
 }
 
-export const fetchProducts = () => {
+export const fetchProducts = (category, search) => {
   return async (dispatch) => {
-    productsRef.orderBy('updated_at', 'desc').get()
+    let query = productsRef.orderBy('updated_at', 'desc')
+    query = (category !== "") ? query.where('category', '==', category ) : query
+    query = (search !== "") ? db.collection("products").orderBy("name").startAt(search).endAt(search + '\uf8ff') : query
+
+    query.get()
       .then(snapshots => {
         const productList = []
         snapshots.forEach(snapshot => {
@@ -111,7 +115,7 @@ export const fetchProducts = () => {
   }
 }
 
-export const saveProduct = (id, name, description, price, images, size, accessories) => {
+export const saveProduct = (id, name, description, price, images, size, accessories, category) => {
   return async (dispatch) => {
     const timestamp = FirebaseTimestamp.now();
 
@@ -119,6 +123,7 @@ export const saveProduct = (id, name, description, price, images, size, accessor
       name: name,
       images: images,
       description: description,
+      category: category,
       price: parseInt(price, 10),
       size: size,
       accessories: accessories,
