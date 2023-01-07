@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -15,12 +15,13 @@ import { push } from 'connected-react-router'
 import { signOut } from '../../reducks/users/operations'
 import { db } from '../../firebase'
 import { Divider } from '@material-ui/core'
-import { getUserRole } from '../../reducks/users/selectors'
+import { getUsername, getUserRole } from '../../reducks/users/selectors'
 
 const ClosableDrawer = (props) => {
   const { container } = props
   const dispatch = useDispatch();
   const selector = useSelector(state => state)
+  const username = getUsername(selector)
   const role = getUserRole(selector)
 
   const selectMenu = (e, path) => {
@@ -45,11 +46,6 @@ const ClosableDrawer = (props) => {
     {func: selectMenu, label: "プロフィール", icon: <PersonIcon />, id: "profile", value: "/user/mypage"},
     {func: selectMenu, label: "問い合わせ", icon: <MailOutlineIcon />, id: "contact", value: "/"},
   ]
-
-  const searchKeyword = (e, path) => {
-    dispatch(push(`?search=${path}`))
-    props.onClose(e)
-  }
 
   useEffect(() => {
     db.collection("categories")
@@ -78,6 +74,7 @@ const ClosableDrawer = (props) => {
       className="c-closable-drawer"
     >
       <div onClose={(e) => props.onClose(e)} className="inner">
+        <div className='drawer__title name__title'>{username}<span>様</span></div>
         <div className='drawer__title'>メニュー</div>
         <Divider />
         <List>

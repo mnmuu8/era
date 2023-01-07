@@ -23,7 +23,12 @@ const FavoriteListItem = (props) => {
   const uid = getUserId(selector)
 
   const removeProductFromFavorite = (id) => {
-    return db.collection("users").doc(uid).collection("favorite").doc(id).delete()
+    const ret = window.confirm("この商品をお気に入りから削除しますか？")
+    if (!ret) {
+      return false
+    } else {
+      return db.collection("users").doc(uid).collection("favorite").doc(id).delete()
+    }
   }
 
   return (

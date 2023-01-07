@@ -62,8 +62,13 @@ const SetAccessoryType = (props) => {
   }
 
   const deleteAccessory = (deleteIndex) => {
-    const newAccessories = props.accessories.filter((accessory, i) => i !== deleteIndex)
-    props.setAccessories(newAccessories)
+    const ret = window.confirm(`このアクセサリーを商品から削除しますか？`)
+    if (!ret) {
+      return false
+    } else {
+      const newAccessories = props.accessories.filter((accessory, i) => i !== deleteIndex)
+      props.setAccessories(newAccessories)
+    }
   }
 
   // const memoIndex = useMemo(() => {

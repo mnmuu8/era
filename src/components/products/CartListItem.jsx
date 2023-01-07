@@ -20,7 +20,12 @@ const CartListItem = (props) => {
   const uid = getUserId(selector)
 
   const removeProductFromCart = (id) => {
-    return db.collection("users").doc(uid).collection("cart").doc(id).delete()
+    const ret = window.confirm("この商品をカートから削除しますか？")
+    if (!ret) {
+      return false
+    } else {
+      return db.collection("users").doc(uid).collection("cart").doc(id).delete()
+    }
   }
 
   return (

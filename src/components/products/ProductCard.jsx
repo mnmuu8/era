@@ -28,6 +28,16 @@ const ProductCard = (props) => {
     setAnchorEl(null)
   }
 
+  const handleDeleteProduct = (id) => {
+    const ret = window.confirm("この商品を削除しますか？")
+    if (!ret) {
+      return false
+    } else {
+      dispatch(deleteProduct(id))
+      handleClose()
+    }
+  }
+
   return (
     <Card className='c-product-card'>
       <CardMedia
@@ -36,7 +46,7 @@ const ProductCard = (props) => {
         onClick={() => dispatch(push("product/" + props.id))}
       />
       <CardContent className='card__contents'>
-        <div onClick={() => dispatch(push("products/" + props.id))}>
+        <div onClick={() => dispatch(push("product/" + props.id))}>
           <Typography color="textSecondary" componentcc="p" className='card__name'>{props.name}</Typography>
           <Typography component="p" className='card__price'>¥{price}</Typography>
         </div>
@@ -58,10 +68,7 @@ const ProductCard = (props) => {
             編集する
           </MenuItem>
           <MenuItem 
-            onClick={() => {
-              dispatch(deleteProduct(props.id))
-              handleClose()
-            }}
+            onClick={() => { handleDeleteProduct(props.id) }}
           >
             削除する
           </MenuItem>
