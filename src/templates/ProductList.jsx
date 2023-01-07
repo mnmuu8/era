@@ -18,8 +18,6 @@ const ProductList = () => {
   const search = /^\?search=/.test(query) ? query.split('?search=')[1] : "";
   const [keyword, setKeyword] = useState("")
 
-  console.log(decodeURI(search))
-
   const inputKeyword = useCallback((e) => {
     setKeyword(e.target.value)
   }, [setKeyword])
