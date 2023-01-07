@@ -25,13 +25,13 @@ function App() {
         handleClose: handleClose
       }}
     >
-      <>
+      <div className='site-body'>
         <Header />
         <main>
           <Router />
         </main>
         <Footer />
-      </>
+      </div>
     </AppContext.Provider>
   );
 }
