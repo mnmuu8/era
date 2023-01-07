@@ -4,14 +4,11 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
-import IconButton from '@material-ui/core/IconButton'
-import SearchIcon from '@material-ui/icons/Search'
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 import HistoryIcon from '@material-ui/icons/History'
 import PersonIcon from '@material-ui/icons/Person'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
-import TextInput from '../UIkit/TextInput'
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
@@ -25,11 +22,6 @@ const ClosableDrawer = (props) => {
   const dispatch = useDispatch();
   const selector = useSelector(state => state)
   const role = getUserRole(selector)
-  const [keyword, setKeyword] = useState("")
-
-  const inputKeyword = useCallback((e) => {
-    setKeyword(e.target.value)
-  }, [setKeyword])
 
   const selectMenu = (e, path) => {
     dispatch(push(path))
@@ -76,82 +68,71 @@ const ClosableDrawer = (props) => {
   }, [])
 
   return (
-    <nav className='c-closable-drawer'>
-      <Drawer
-        container={container}
-        variant="temporary"
-        anchor='right'
-        open={props.open}
-        onClose={(e) => props.onClose(e)}
-        ModalProps={{keepMounted: true}}
-        className="inner"
-      >
-        <div onClose={(e) => props.onClose(e)} >
-          <div className='search__field'>
-            <TextInput 
-              fullWidth={false} label={"キーワードを入力"} multiline={false}
-              onChange={inputKeyword} required={false} minRows={1} value={keyword} type={"text"}
-            />
-            <IconButton onClick={(e) => searchKeyword(e, keyword)}>
-              <SearchIcon />
-            </IconButton>
-          </div>
-          <div className='drawer__title'>メニュー</div>
-          <Divider />
-          <List>
-            {role === "admin" ? (
-              menus.map(menu => (
-                <ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
-                  <ListItemIcon>
-                    {menu.icon}
-                  </ListItemIcon>
-                  <ListItemText primary={menu.label} />
-                </ListItem>
-              ))
-            ) : (
-              userMenus.map(menu => (
-                <ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
-                  <ListItemIcon>
-                    {menu.icon}
-                  </ListItemIcon>
-                  <ListItemText primary={menu.label} />
-                </ListItem>
-              ))
-            )}
-            
+    <Drawer
+      container={container}
+      variant="temporary"
+      anchor='right'
+      open={props.open}
+      onClose={(e) => props.onClose(e)}
+      ModalProps={{keepMounted: true}}
+      className="c-closable-drawer"
+    >
+      <div onClose={(e) => props.onClose(e)} className="inner">
+        <div className='drawer__title'>メニュー</div>
+        <Divider />
+        <List>
+          {role === "admin" ? (
+            menus.map(menu => (
+              <ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
+                <ListItemIcon>
+                  {menu.icon}
+                </ListItemIcon>
+                <ListItemText primary={menu.label} />
+              </ListItem>
+            ))
+          ) : (
+            userMenus.map(menu => (
+              <ListItem button key={menu.id} onClick={(e) => menu.func(e, menu.value)}>
+                <ListItemIcon>
+                  {menu.icon}
+                </ListItemIcon>
+                <ListItemText primary={menu.label} />
+              </ListItem>
+            ))
+          )}
+          
+          <ListItem 
+            button 
+            key="logout" 
+            onClick={(e) => {
+              dispatch(signOut())
+              props.onClose(e)
+            }}
+          >
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary={"サインアウト"} />
+          </ListItem>
+        </List>
+        <div className='drawer__title'>カテゴリー</div>
+        <Divider />
+        <List>
+          {filters.map(filter => (
             <ListItem 
               button 
-              key="logout" 
+              key={filter.id}
               onClick={(e) => {
-                dispatch(signOut())
+                filter.func(e, filter.value)
                 props.onClose(e)
               }}
             >
-              <ListItemIcon>
-                <ExitToAppIcon />
-              </ListItemIcon>
-              <ListItemText primary={"サインアウト"} />
+              <ListItemText primary={filter.label} />
             </ListItem>
-          </List>
-          <div className='drawer__title'>カテゴリー</div>
-          <Divider />
-          <List>
-            {filters.map(filter => (
-              <ListItem 
-                button 
-                key={filter.id}
-                onClick={(e) => {
-                  filter.func(e, filter.value)
-                  props.onClose(e)
-                }}
-              >
-                <ListItemText primary={filter.label} />
-              </ListItem>
-            ))}
-          </List>
-        </div>
-      </Drawer>
-    </nav>
+          ))}
+        </List>
+      </div>
+    </Drawer>
   )
 }
 

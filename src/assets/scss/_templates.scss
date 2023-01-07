@@ -8,6 +8,20 @@
     max-width: 960px;
     margin: 0 auto;
     width: 90%;
+    .search__box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      .search__field {
+        display: flex;
+        align-items: center;
+        margin: 0 10px;
+      }
+      .search__result {
+        margin-right: 10px;
+      }
+    }
     .product__all {
       display: flex;
       flex-wrap: wrap;
