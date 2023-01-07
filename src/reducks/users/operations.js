@@ -62,7 +62,8 @@ export const listenAuthState = () => {
               
             })
       } else {
-        dispatch(push("/signin"))
+        // dispatch(push("/signin"))
+        auth().signInAnonymously();
       }
     })
   }

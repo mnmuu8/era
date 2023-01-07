@@ -228,3 +228,16 @@
 .c-select-box {
   width: 100%;
 }
+
+.c-auth-modal {
+  text-align: center;
+  h2 {
+    margin-bottom: 40px;
+  }
+  p {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 16px;
+  }
+}
