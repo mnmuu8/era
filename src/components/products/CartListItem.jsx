@@ -8,10 +8,12 @@ import { IconButton } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 import { getUserId } from '../../reducks/users/selectors'
 import { db } from '../../firebase'
+import NoImage from "../../assets/img/no_image.png"
 
 const CartListItem = (props) => {
   const name = props.product.name
-  const image = props.product.images[0].path
+  const image = (props.product.images.length > 0 ? props.product.images : [{path: NoImage}])
+  // const images = (props.images.length > 0 ? props.images : [{path: NoImage}])
   const price = props.product.price.toLocaleString();
   const size = props.product.size
   const color = props.product.accessory.color
@@ -32,7 +34,7 @@ const CartListItem = (props) => {
     <>
       <ListItem className='c-cart-list-item'>
         <ListItemAvater className='avater'>
-          <img src={image} alt="商品画像" />
+          <img src={image[0].path} alt="商品画像" />
         </ListItemAvater>
         <div className='detail'>
           <ListItemText 

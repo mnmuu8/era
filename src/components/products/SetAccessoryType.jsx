@@ -33,18 +33,23 @@ const SetAccessoryType = (props) => {
   }, [setQuantity])
 
   const addAccessory = (index, color, type, quantity) => {
+
+    const S="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const N=16;
+    const accessoryId = Array.from(crypto.getRandomValues(new Uint32Array(N))).map((n)=>S[n%S.length]).join('')
+
     if (color === "" || type === "" || quantity === "") {
       return false
     } else {
       if (index === props.accessories.length) {
-        props.setAccessories(prevState => [...prevState, {color: color, type: type, quantity: quantity}])
+        props.setAccessories(prevState => [...prevState, {id: accessoryId, color: color, type: type, quantity: quantity}])
         setIndex(index + 1)
         setColor("")
         setType("")
         setQuantity(0)
       } else {
         const newAccessories = props.accessories
-        newAccessories[index] = {color: color, type: type, quantity: quantity}
+        newAccessories[index] = {id: accessoryId, color: color, type: type, quantity: quantity}
         props.setAccessories(newAccessories)
         setIndex(newAccessories.length)
         setColor("")

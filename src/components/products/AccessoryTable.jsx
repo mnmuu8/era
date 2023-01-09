@@ -1,5 +1,5 @@
 import { IconButton, Table, TableBody, TableCell, TableContainer, TableRow } from '@material-ui/core'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { AuthModal, FlashMessage } from '../UIkit';
@@ -48,7 +48,7 @@ const AccessoryTable = (props) => {
           <TableBody>
             {accessories.length > 0 && (
               accessories.map(accessory => (
-                <TableRow key={accessory.color}>
+                <TableRow key={accessory.id}>
                   <TableCell component="th" scope="row">
                     {accessory.color}
                   </TableCell>
