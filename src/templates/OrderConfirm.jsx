@@ -22,9 +22,9 @@ const OrderConfirm = () => {
 
   const total = subtotal + shippingFee + tax
 
-  const order = useCallback((productsInCart, total) => {
+  const order = useCallback(() => {
     dispatch(orderProduct(productsInCart, total))
-  }, [productsInCart, total])
+  }, [productsInCart])
 
   return (
     <section className='t-order-confirm'>
@@ -44,7 +44,7 @@ const OrderConfirm = () => {
               <TextDetail label="送料" value={"¥" + shippingFee.toLocaleString()} />
               <Divider />
               <TextDetail label="合計（税込）" value={"¥" + total} />
-              <PrimaryButton label={"注文する"} onClick={() => order(productsInCart, total)} />
+              <PrimaryButton label={"注文する"} onClick={order} />
           </div>
         </div>
       </div>

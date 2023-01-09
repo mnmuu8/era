@@ -22,12 +22,13 @@ export const orderProduct = (productsInCart, amount) => {
       const accessories =  snapshot.data().accessories;
 
       const updatedAccessories = accessories.map(accessory => {
-        if( accessory.color === product.accessory.color ) {
+        if( accessory.id === product.accessory.id ) {
           if (accessory.quantity === 0) {
             soldOutProducts.push(product.name)
             return accessory
           }
           return {
+            id: accessory.id,
             color: accessory.color,
             type: accessory.type,
             quantity: accessory.quantity - 1

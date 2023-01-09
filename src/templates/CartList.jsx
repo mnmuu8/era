@@ -23,14 +23,16 @@ const CartList = () => {
     <section className='t-cart-list'>
       <div className='inner'>
         <h2 className='s__head'>ショッピングカート</h2>
-        <div className='s__body'>
-          <List className='product__all'>
-            {productsInCart.length > 0 && (
-              productsInCart.map(product => <CartListItem key={product.cartId} product={product} />)
-            )}
-          </List>
-          <PrimaryButton label={"レジへ進む"} onClick={() => {goToOrder()}} />
-        </div>
+        {productsInCart.length > 0 ? (
+          <div className='s__body'>
+            <List className='product__all'>
+              {productsInCart.map(product => <CartListItem key={product.cartId} product={product} />)}
+            </List>
+            <PrimaryButton label={"レジへ進む"} onClick={() => {goToOrder()}} />
+          </div>
+        ) : (
+          <p>カートに商品はありません</p>
+        )}
       </div>
     </section>
   )

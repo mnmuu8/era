@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "era-ec"
-  }
+    "default": "era-ec",
+    "staging": "era-staging-78842"
+  },
+  "targets": {},
+  "etags": {}
 }

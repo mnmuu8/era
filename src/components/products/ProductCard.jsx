@@ -5,16 +5,19 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { MenuItem } from '@material-ui/core';
 import { push } from 'connected-react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import { MoreVert } from '@material-ui/icons';
 import NoImage from "../../assets/img/no_image.png"
 import { deleteProduct } from '../../reducks/products/operations';
+import { getUserRole } from '../../reducks/users/selectors';
 
 const ProductCard = (props) => {
 
   const dispatch = useDispatch();
+  const selector = useSelector(state => state);
+  const role = getUserRole(selector)
   const price = props.price.toLocaleString();
   const images = (props.images.length > 0 ? props.images : [{path: NoImage}])
   
@@ -28,6 +31,16 @@ const ProductCard = (props) => {
     setAnchorEl(null)
   }
 
+  const handleDeleteProduct = (id) => {
+    const ret = window.confirm("この商品を削除しますか？")
+    if (!ret) {
+      return false
+    } else {
+      dispatch(deleteProduct(id))
+      handleClose()
+    }
+  }
+
   return (
     <Card className='c-product-card'>
       <CardMedia
@@ -36,13 +49,15 @@ const ProductCard = (props) => {
         onClick={() => dispatch(push("product/" + props.id))}
       />
       <CardContent className='card__contents'>
-        <div onClick={() => dispatch(push("products/" + props.id))}>
+        <div onClick={() => dispatch(push("product/" + props.id))}>
           <Typography color="textSecondary" componentcc="p" className='card__name'>{props.name}</Typography>
           <Typography component="p" className='card__price'>¥{price}</Typography>
         </div>
-        <IconButton onClick={handleClick}>
-          <MoreVert />
-        </IconButton>
+        {(role === "admin") && (
+          <IconButton onClick={handleClick}>
+            <MoreVert />
+          </IconButton>
+        )}
         <Menu
           anchorEl={anchorEl}
           keepMounted
@@ -58,10 +73,7 @@ const ProductCard = (props) => {
             編集する
           </MenuItem>
           <MenuItem 
-            onClick={() => {
-              dispatch(deleteProduct(props.id))
-              handleClose()
-            }}
+            onClick={() => { handleDeleteProduct(props.id) }}
           >
             削除する
           </MenuItem>

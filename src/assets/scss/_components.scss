@@ -97,9 +97,20 @@
   height: 250px;
   margin-bottom: 20px;
   border: 1px solid #EEE;
-  img {
+  position: relative;
+  > img {
     width: 100%;
     height: 100%;
+  }
+  .circle-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #FFF !important;
+    transition: .3s all;
+    &:hover {
+      opacity: 0.7 !important;
+    }
   }
 }
 
@@ -112,6 +123,7 @@
 .c-product-card {
   width: 300px;
   margin: 0 10px 20px;
+  cursor: pointer;
   .card__media {
     height: 0;
     padding-top: 100%;
@@ -144,10 +156,13 @@
   color: cadetblue;
   font-size: 14px;
 }
-.search__field {
-  display: flex ;
-  align-items: center ;
-  margin: 10px 16px;
+.drawer__title.name__title {
+  color: #000;
+  font-size: 18px;
+  span {
+    font-size: 14px;
+    margin-left: 4px;
+  }
 }
 
 .c-cart-list-item, .c-favorite-list-item {
@@ -212,4 +227,17 @@
 
 .c-select-box {
   width: 100%;
+}
+
+.c-auth-modal {
+  text-align: center;
+  h2 {
+    margin-bottom: 40px;
+  }
+  p {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 16px;
+  }
 }

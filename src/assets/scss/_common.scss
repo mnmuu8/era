@@ -1,5 +1,11 @@
+.site-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 main {
   padding: 80px 0;
+  flex: 1;
 }
 .s__head {
   text-align: center;

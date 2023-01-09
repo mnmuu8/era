@@ -13,11 +13,13 @@ const FavoriteList = () => {
       <div className='inner'>
         <h2 className='s__head'>お気に入り</h2>
         <div className='s__body'>
-          <List className='product__all'>
-            {productsFavorite.length > 0 && (
-              productsFavorite.map(product => <FavoriteListItem product={product} key={product.favoriteId} />)
-            )}
-          </List>
+          {productsFavorite.length > 0 ? (
+            <List className='product__all'>
+              {productsFavorite.map(product => <FavoriteListItem product={product} key={product.favoriteId} />)}
+            </List>
+          ) : (
+            <p>お気に入りに商品がありません。</p>
+          )}
         </div>
       </div>
     </section>

@@ -24,9 +24,14 @@ const Header = () => {
       <header className='c-header'>
         <div className='inner'>
           <h1 className='logo' onClick={() => dispatch(push("/"))}>era</h1>
-          {isSignedIn && (
+          {isSignedIn ? (
             <div>
               <HeaderMenus handleDrawerToggle={handleDrawerToggle} />
+            </div>
+          ):(
+            <div className='auth__link'>
+              <p onClick={() => dispatch(push("/signup"))}>アカウント登録</p>
+              <p onClick={() => dispatch(push("/signin"))}>サインイン</p>
             </div>
           )}
         </div>

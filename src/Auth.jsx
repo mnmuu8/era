@@ -14,11 +14,12 @@ const Auth = ({ children }) => {
     } 
   }, [])
 
-  if (!isSignedIn) {
-    return <></>
-  } else {
-    return children
-  }
+  // if (!isSignedIn) {
+  //   return <></>
+  // } else {
+  //   return children
+  // }
+  return children
 }
 
 export default Auth
