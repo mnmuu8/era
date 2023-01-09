@@ -185,12 +185,13 @@
 }
 .c-favorite-list-item {
   .detail {
-    width: calc(100% - (120px + (170px + 46px)));
+    // width: calc(100% - (120px + (170px + 46px)));
+    width: calc(100% - (120px + 46px));
   }
-  .c-primary-button {
-    width: 160px !important;
-    margin-right: 10px;
-  }
+  // .c-primary-button {
+  //   width: 160px !important;
+  //   margin-right: 10px;
+  // }
 }
 
 .c-text-detail {
@@ -214,15 +215,16 @@
     }
   }
   .detail {
-    width: calc(100% - 280px);
+    // width: calc(100% - 280px);
+    width: calc(100% - 120px);
     padding: 0 20px;
     .price {
       color: cadetblue;
     }
   }
-  .c-primary-button {
-    width: 160px;
-  }
+  // .c-primary-button {
+  //   width: 160px;
+  // }
 }
 
 .c-select-box {
@@ -239,5 +241,20 @@
     cursor: pointer;
     font-size: 14px;
     margin-top: 16px;
+  }
+}
+
+@include mq(md) {
+  .c-footer {
+    .inner {
+      padding: 60px 20px 30px;
+      .links {
+        flex-wrap: wrap;
+        li {
+          width: 100%;
+          padding: 2px 0;
+        }
+      }
+    }
   }
 }

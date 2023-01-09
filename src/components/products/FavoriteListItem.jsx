@@ -47,7 +47,7 @@ const FavoriteListItem = (props) => {
             primary={"¥" + price}
           />
         </div>
-        <PrimaryButton label={"商品詳細を見る"} onClick={() => dispatch(push("/product/" + props.product.productId))} />
+        {/* <PrimaryButton label={"商品詳細を見る"} onClick={() => dispatch(push("/product/" + props.product.productId))} /> */}
         <IconButton className='circle-icon' onClick={() => removeProductFromFavorite(props.product.favoriteId)}>
           <DeleteIcon />
         </IconButton>
