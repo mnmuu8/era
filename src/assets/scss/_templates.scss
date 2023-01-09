@@ -25,6 +25,7 @@
     .product__all {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
     }
     .add-btn {
       width: 66px;
@@ -196,6 +197,54 @@
     }
     .c-primary-button {
       margin-top: 30px;
+    }
+  }
+}
+
+@include mq(lg) {
+  .t-product-detail {
+    .inner {
+      .product {
+        flex-wrap: wrap;
+        .product__slide {
+          margin: 0 auto 36px;
+        }
+        .product__detail {
+          width: 100%;
+          .product__name {
+            font-size: 24px;
+          }
+          .product__price {
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  .t-product-list {
+    .inner {
+      .search__box {
+        flex-wrap: wrap;
+        .search__field {
+          margin: 0 0 16px;
+        }
+      }
+    }
+  }
+
+  .t-order-confirm {
+    .inner {
+      .s__body {
+        flex-wrap: wrap;
+        .order__detail {
+          width: 100%;
+        }
+        .product__detail {
+          width: 100%;
+          margin-bottom: 30px;
+        }
+      }
     }
   }
 }

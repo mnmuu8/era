@@ -29,7 +29,7 @@ const OrderedProducts = (props) => {
               <ListItemText primary={product.name} secondary={`Color: ${product.accessory.color} / Type: ${product.accessory.type} / Size: ${product.size}`} />
               <ListItemText className='price' primary={"¥" + product.price.toLocaleString()} />
             </div>
-            <PrimaryButton label={"注文詳細を見る"} onClick={() => goToProductDetail(product.id)} />
+            {/* <PrimaryButton label={"注文詳細を見る"} onClick={() => goToProductDetail(product.id)} /> */}
           </ListItem>
           <Divider />
         </>
